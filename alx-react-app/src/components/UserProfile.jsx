@@ -1,3 +1,4 @@
+// src/components/UserProfile.jsx
 const UserProfile = (props) => {
     return (
         <div>
@@ -8,5 +9,5 @@ const UserProfile = (props) => {
     );
 };
 
-
 export default UserProfile;
+
