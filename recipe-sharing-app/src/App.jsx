@@ -10,13 +10,12 @@ function App() {
         <Route
           path="/"
           element={
-            <>
+            <div>
               <AddRecipeForm />
               <RecipeList />
-            </>
+            </div>
           }
         />
-
         <Route path="/recipes/:id" element={<RecipeDetails />} />
       </Routes>
     </BrowserRouter>
