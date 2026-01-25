@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRecipeStore } from '../store/recipeStore';
+import useRecipeStore from '../store/recipeStore';
 
 const AddRecipeForm = () => {
     const addRecipe = useRecipeStore((state) => state.addRecipe);
@@ -9,8 +9,6 @@ const AddRecipeForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        if (!title || !description) return;
 
         addRecipe({
             id: Date.now(),
@@ -24,8 +22,6 @@ const AddRecipeForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Add New Recipe</h2>
-
             <input
                 type="text"
                 placeholder="Title"
