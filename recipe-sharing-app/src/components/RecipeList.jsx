@@ -3,10 +3,15 @@ import useRecipeStore from './recipeStore';
 
 const RecipeList = () => {
     const recipes = useRecipeStore((state) => state.recipes);
+    const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+    const searchTerm = useRecipeStore((state) => state.searchTerm);
+
+    const displayedRecipes =
+        searchTerm.length > 0 ? filteredRecipes : recipes;
 
     return (
         <div>
-            {recipes.map((recipe) => (
+            {displayedRecipes.map((recipe) => (
                 <div key={recipe.id}>
                     <h3>
                         <Link to={`/recipes/${recipe.id}`}>
