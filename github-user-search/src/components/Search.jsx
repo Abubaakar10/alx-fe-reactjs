@@ -27,7 +27,7 @@ export default function Search() {
       const result = await searchUsers({ username, location, minRepos, page: 1 });
 
       if (!result.items || result.items.length === 0) {
-        setError("Looks like we cant find the user");
+        setError("Looks like we can't find the user");
         setLoading(false);
         return;
       }
