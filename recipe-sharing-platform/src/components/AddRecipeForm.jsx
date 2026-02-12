@@ -1,26 +1,26 @@
 import { useState } from "react";
 
+function validate(title, ingredients, steps) {
+  const newErrors = {};
+  if (!title.trim()) newErrors.title = "Title is required";
+  if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
+  if (!steps.trim()) newErrors.steps = "Steps are required";
+
+  const ingredientsArray = ingredients.split(",").map((i) => i.trim());
+  if (ingredientsArray.length < 2) newErrors.ingredients = "Add at least 2 ingredients";
+
+  return newErrors;
+}
+
 function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
 
-  const validate = () => {
-    const newErrors = {};
-    if (!title.trim()) newErrors.title = "Title is required";
-    if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
-    if (!steps.trim()) newErrors.steps = "Steps are required";
-
-    const ingredientsArray = ingredients.split(",").map((i) => i.trim());
-    if (ingredientsArray.length < 2) newErrors.ingredients = "Add at least 2 ingredients";
-
-    return newErrors;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
+    const validationErrors = validate(title, ingredients, steps);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -98,4 +98,3 @@ function AddRecipeForm() {
 }
 
 export default AddRecipeForm;
-
