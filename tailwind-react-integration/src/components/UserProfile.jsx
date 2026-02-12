@@ -1,14 +1,15 @@
 function UserProfile() {
-  return (
-    <div className="
-      bg-gray-100
-      p-4 md:p-8
-      max-w-xs md:max-w-sm
-      mx-auto my-20
-      rounded-lg shadow-lg
-      text-center
-    ">
-      <img
+  return (  
+         <div className="
+          bg-gray-100
+          sm:p-4 md:p-8
+          max-w-xs md:max-w-sm
+          mx-auto my-20
+          rounded-lg shadow-lg
+          text-center
+     ">
+
+         <img
         src="https://randomuser.me/api/portraits/men/75.jpg"
         alt="User"
         className="
