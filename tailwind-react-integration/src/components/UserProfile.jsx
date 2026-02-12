@@ -1,15 +1,19 @@
 function UserProfile() {
-  return (  
-         <div className="
-          bg-gray-100
-          sm:p-4 md:p-8
-          max-w-xs md:max-w-sm
-          mx-auto my-20
-          rounded-lg shadow-lg
-          text-center
-     ">
-
-         <img
+  return (
+    <div
+      className="
+        bg-gray-100
+        sm:p-4 md:p-8
+        max-w-xs md:max-w-sm
+        mx-auto my-20
+        rounded-lg shadow-lg
+        text-center
+        hover:shadow-xl
+        transition-shadow duration-300 ease-in-out
+      "
+    >
+      {/* Profile Image with hover scale */}
+      <img
         src="https://randomuser.me/api/portraits/men/75.jpg"
         alt="User"
         className="
@@ -18,21 +22,31 @@ function UserProfile() {
           rounded-full
           mx-auto
           object-cover
+          transform transition-transform duration-300 ease-in-out
+          hover:scale-110
         "
       />
 
-      <h1 className="
-        text-lg md:text-xl
-        text-blue-800
-        my-4
-      ">
+      {/* Name Heading with hover color change */}
+      <h1
+        className="
+          text-lg md:text-xl
+          text-blue-800
+          my-4
+          transition-colors duration-300 ease-in-out
+          hover:text-blue-500
+        "
+      >
         John Doe
       </h1>
 
-      <p className="
-        text-gray-600
-        text-sm md:text-base
-      ">
+      {/* Bio */}
+      <p
+        className="
+          text-gray-600
+          text-sm md:text-base
+        "
+      >
         Developer at Example Co. Loves to write code and explore new technologies.
       </p>
     </div>
