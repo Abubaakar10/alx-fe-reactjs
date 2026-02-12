@@ -3,42 +3,11 @@ import { useState } from "react";
 function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
-  const [errors, setErrors] = useState({});
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {};
-
-    if (!title.trim()) newErrors.title = "Title is required";
-    if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
-    if (!instructions.trim()) newErrors.instructions = "Instructions are required";
-
-    const ingredientsArray = ingredients.split(",").map((i) => i.trim());
-    if (ingredientsArray.length < 2) newErrors.ingredients = "Add at least 2 ingredients";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    console.log("Recipe Submitted:", { title, ingredients: ingredientsArray, instructions });
-    setTitle("");
-    setIngredients("");
-    setInstructions("");
-    setErrors({});
-    alert("Recipe submitted successfullyimport { useState } from "react";
-
-function AddRecipeForm() {
-  const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validate = () => {
     const newErrors = {};
-
     if (!title.trim()) newErrors.title = "Title is required";
     if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
     if (!steps.trim()) newErrors.steps = "Steps are required";
@@ -46,12 +15,23 @@ function AddRecipeForm() {
     const ingredientsArray = ingredients.split(",").map((i) => i.trim());
     if (ingredientsArray.length < 2) newErrors.ingredients = "Add at least 2 ingredients";
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
-    console.log("Recipe Submitted:", { title, ingredients: ingredientsArray, steps });
+    console.log("Recipe Submitted:", {
+      title,
+      ingredients: ingredients.split(",").map((i) => i.trim()),
+      steps,
+    });
+
     setTitle("");
     setIngredients("");
     setSteps("");
@@ -81,14 +61,18 @@ function AddRecipeForm() {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 font-semibold mb-2">Ingredients (comma-separated)</label>
+          <label className="block text-gray-700 font-semibold mb-2">
+            Ingredients (comma-separated)
+          </label>
           <textarea
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             rows={4}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
+          {errors.ingredients && (
+            <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
+          )}
         </div>
 
         <div className="mb-4">
