@@ -27,6 +27,35 @@ function AddRecipeForm() {
     setIngredients("");
     setInstructions("");
     setErrors({});
+    alert("Recipe submitted successfullyimport { useState } from "react";
+
+function AddRecipeForm() {
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [steps, setSteps] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+
+    if (!title.trim()) newErrors.title = "Title is required";
+    if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
+    if (!steps.trim()) newErrors.steps = "Steps are required";
+
+    const ingredientsArray = ingredients.split(",").map((i) => i.trim());
+    if (ingredientsArray.length < 2) newErrors.ingredients = "Add at least 2 ingredients";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    console.log("Recipe Submitted:", { title, ingredients: ingredientsArray, steps });
+    setTitle("");
+    setIngredients("");
+    setSteps("");
+    setErrors({});
     alert("Recipe submitted successfully!");
   };
 
@@ -65,12 +94,12 @@ function AddRecipeForm() {
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold mb-2">Preparation Steps</label>
           <textarea
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             rows={4}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {errors.instructions && <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>}
+          {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
         </div>
 
         <button
@@ -85,3 +114,4 @@ function AddRecipeForm() {
 }
 
 export default AddRecipeForm;
+
